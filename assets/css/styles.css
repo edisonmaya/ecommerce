@@ -103,6 +103,9 @@ i{
     justify-content: start;
     align-items: center;
 }
+
+
+
 .c2{
     display: flex;
     justify-content: start;
@@ -110,17 +113,9 @@ i{
     flex: 1;
     gap:1rem;
 }
+
 ul,li,a{
-    display: flex;
-    padding-left: 0.5rem;
-    justify-content: start;
-    align-items: center;
-    text-decoration: none;
-    list-style: none;
-    color: var(--text-color);
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: hover 0.5s;
+    display: none;
 }
 a:hover{
     color: var(--first-color);
@@ -140,12 +135,26 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
-#firstSection{
+/*#firstSection{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     max-height: 100vh;
     width: 100%;    
+}    
+.secondSection{
+    display: flex;
+    padding: 0 2rem ;
+    width: 100%; 
+}
+*/
+#firstSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-height: 140vh;
+    width: 100%;    
+    gap: 1rem;
 }    
 .bx{
     font-size: 1.3rem;
@@ -197,7 +206,7 @@ h4{
 }
 .valor{
     color:var(--first-color);
-    font-size: 1.4em;
+    font-size: 1.5rem;
     font-weight: 800;
 }
 .overlay{
@@ -336,4 +345,36 @@ img{
     right: 0;
     background-color: var(--container-color);
     height: calc(100vh - 3.5rem);
+}
+
+
+
+
+
+@media (min-width:700px)
+ {
+    ul,li,a{
+        display: flex;
+        padding-left: 0.5rem;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        list-style: none;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: hover 0.5s;
+    }
+    #firstSection{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;   
+    } 
+    .first--image{
+        min-height: 80vh;
+        width: 55%;
+    }
+    h1{
+        font-size: 3rem;
+    }
 }
