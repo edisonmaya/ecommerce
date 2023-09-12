@@ -23,10 +23,10 @@ function printProducts(db){
                         <div class = "cardProduct__img">
                             <img class="cardImg"src="${product.image}" alt="Image ${product.name}"/>
                             <div class="plus"><i class='bx bx-plus' id='${product.id}'></i></div>
+                            
                         </div>
                         <div class="card__Section_bottom">
                             <div class = "cardProduct__info">
-                            
                                 <h3>$${product.price}.00</h3><span><b>Stock: ${product.quantity}</b></span>
                             </div>
                             <div class="cardProduct__Name">
