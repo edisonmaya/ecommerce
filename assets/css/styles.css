@@ -350,37 +350,38 @@ img{
 #footer{
     display: grid;
     place-items: center;
-    height: 80vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: lightgrey;
+    gap: 2rem;
 }
 
 
 .content{
     display: grid;
     place-items: center;
-    width: 100%;
-
+    width: 100vw;
+    height: 100%;
 }
 .area1{
     display: grid;
-    place-items: center;
-    width: 100%;
+    justify-items: left;
+    width: 100vw;
     height: 100%;
     padding: 2rem;
+    
 }
 .items_area1{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
+    justify-content: stretch;
+    gap: 1rem;
 }
 .item{
     display: flex;
     flex-direction: column;
-    height: 200px;
-    width: 200px;
-    
+    width: 100%;
     gap: 0.5rem;
 }
 .item > p{
@@ -399,12 +400,58 @@ img{
     font-size: 1.5rem;
 }
 
+
+
+
+
+
+/*.area1{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    height: 20rem;
+    background-color:var(--card-color);
+    border: 1px solid black;
+    gap: 1rem;
+    padding: 2rem 2rem;
+    background-color: lightblue;
+}
+.links__information{
+    display: flex;
+    flex-direction: column;
+    max-height: 120vh;
+    width: 100%;
+    background-color: lightblue;
+    gap: 1rem;
+}
+.link__information{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: lightcoral;
+    gap: 1rem;
+}
+.a_link{
+display: flex;
+flex-direction: column;
+background-color: lightslategray;
+min-height: 100px;
+}
+.a_link_ul{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-decoration: none;
+    color: var(--text-color);
+    }
+*/
 .area2{
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 3rem;
-    padding: 0 2rem;
+    padding: 2rem 2rem;
 }
 .repositorio,.problemas{
     min-height: 2rem;
@@ -452,4 +499,47 @@ img{
     h1{
         font-size: 3rem;
     }
+
+
+    .area1{
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+    }
+    
+    .items_area1{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 1rem;
+        width: 80%;
+    }
+    .item{
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        max-width: 100%;
+        gap: 0.5rem;
+    }
+    .item > p{
+        padding-bottom: 1rem;
+        font-weight: 700;
+    }
+    .a_item{
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 0.9rem;
+    }
+    .item_social{
+        display: flex;
+        justify-content: left;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+    }
+
+
+
 }
