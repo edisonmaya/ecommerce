@@ -321,6 +321,11 @@ img{
 
 }
 
+
+
+
+
+
 .cart{
     height: calc(100vh - 3.5rem);
     width: 400px;
@@ -328,31 +333,47 @@ img{
     position: fixed;
     right: -100%;
     top: 3.5rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     transition: right 0.3s;
-}
-.cart__products{
-    background-color: lightblue;
-    height: 85%;
-}
-.cart__total{
-    background-color:lightgreen;
-    height: 15%;
+    z-index: 1;
 }
 .cart__show{
     right: 0;
     background-color: var(--container-color);
     height: calc(100vh - 3.5rem);
 }
+.card__products{
+    background-color: lightblue;
+    height: 85%;
+}
+.card__total{
+    background-color:lightgreen;
+    height: 15%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #footer{
     display: grid;
     place-items: center;
     min-height: 100vh;
     width: 100vw;
-    background-color: lightgrey;
+    background-color: var(--card-color);
     gap: 2rem;
 }
 
@@ -387,6 +408,7 @@ img{
 .item > p{
     padding-bottom: 1rem;
     font-weight: 700;
+    color:var(--title-color);
 }
 .a_item{
     text-decoration: none;

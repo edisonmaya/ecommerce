@@ -87,6 +87,11 @@ async function main()
     drawCart(db);
     themeMode();
     scroll()
+    const productsHTML = document.querySelector(".cardProduct");
+    productsHTML.addEventListener('click',function (e) {
+        if(e.target.classList.contains('bx-plus'))
+        console.log(Number(e.target.id));
+    })
 }
 
 
