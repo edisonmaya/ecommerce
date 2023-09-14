@@ -38,6 +38,42 @@ function printProducts(db){
             thirdSection.innerHTML=html;
         }       
 }
+function imprimirProductos(db){
+    const thirdSection = document.querySelector("#thirdSection");
+    
+    let html=``;
+    for (const product of db.products) 
+        {
+            html+=`             
+                <div class="cardProduct">
+                    <div class="element ${product.category}">
+                        <div class = "cardProduct__img">
+                            <img class="cardImg"src="${product.image}" alt="Image ${product.name}"/>
+                            ${product.quantity?`<div class="plus"><i class='bx bx-plus' id='${product.id}'></i></div>`:
+                            `<span class="soldOut"><p>Sold Out</p></span>`}  
+                        </div>
+                        <div class="card__Section_bottom">
+                            <div class = "cardProduct__info">
+                                <h3>$${product.price}.00</h3><span><b>Stock: ${product.quantity}</b></span>
+                            </div>
+                            <div class="cardProduct__Name">
+                                <h4>${product.name}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+        }   
+        thirdSection.innerHTML= html;    
+        mixitup(".cardProduct", {
+            selectors: {
+                target:'.element'
+            },
+            animation: {
+                duration: 300
+            }
+        }).filter('all')
+}
 function handleShowCart() {
     const iconCart = document.querySelector(".bx-shopping-bag");
     const cartHtml = document.querySelector(".cart");
@@ -45,11 +81,17 @@ function handleShowCart() {
         cartHtml.classList.toggle("cart__show");
     })
 }
+function CloseShowCart() {
+    const bxX = document.querySelector(".x");
+    const carttHtml = document.querySelector(".cart");
+    bxX.addEventListener("click",function () {
+        carttHtml.classList.toggle("cart__show");
+    })
+}    
 function handleShowMenu() {
     const iconMenu = document.querySelector(".bxs-dashboard");
     const menutHtml = document.querySelector(".menu");
     iconMenu.addEventListener("click",function () {
-        console.log(iconMenu);
         menutHtml.classList.toggle("menu__show");
     })
 }
@@ -57,7 +99,6 @@ function CloseShowMenu() {
     const bxX = document.querySelector(".bx-x");
     const menutHtml = document.querySelector(".menu");
     bxX.addEventListener("click",function () {
-        console.log(bxX)
         menutHtml.classList.toggle("menu__show");
     })
 }
@@ -111,9 +152,6 @@ function scroll() {
         const a_nav2 = document.querySelector('.a_nav2');
         
         window.scrollY>0? header.classList.add('change'): header.classList.remove('change');
-        //if(screen.height<window.scrollY){a_nav1.classList.add('a_nav1'); console.log(window.scrollY)}else{a_nav1.classList.add('a_nav1--change')}
-        //screen.height<(screen.height+1)? a_nav1.classList.add('a_nav1--change'):a_nav1.classList.remove('a_nav1--change');
-        //screen.height<window.scrollY? a_nav2.classList.add('a_nav2--change'):a_nav2.classList.remove('a_nav2--change');
     })
 }
 function printProductsinCart(db) {
@@ -128,8 +166,9 @@ function printProductsinCart(db) {
                         <img src="${image}" alt="imagen" />
                     </div>
                     <div class="cart__product--body">
-                        <h4>${name} | $ ${price}</h4>
-                        <p>Stock: ${quantity}</p>
+                        <h4>${name} </h4>
+                        <h5><p class="p1">Stock: ${quantity}<p class="p2"> | $${price}.00</p></p><h5>
+                        <h5><p class="p2"> Subtotal: $${price*amount}.00</p>
                         <div class="cart__product--body-op" id = '${id}'>
                             <i class='bx bx-minus'></i>
                             <span>${amount} unit</span>
@@ -247,9 +286,11 @@ async function main()
     const db={ products: JSON.parse( window.localStorage.getItem("products")) || 
     await getProducts(url), cart: JSON.parse(window.localStorage.getItem("cart")) || {}, }
     printProducts(db);
+    //imprimirProductos(db)
     handleShowCart();
-    handleShowMenu()
-    CloseShowMenu()
+    CloseShowCart();
+    handleShowMenu();
+    CloseShowMenu();
     addToCartfromThirdSection(db);
     themeMode();
     scroll();

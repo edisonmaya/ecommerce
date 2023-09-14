@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academlo store</title>
+    <link rel="icon" type="image/x-icon" href="./assets/image/Academlo.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js" integrity="sha512-nKZDK+ztK6Ug+2B6DZx+QtgeyAmo9YThZob8O3xgjqhw2IVQdAITFasl/jqbyDwclMkLXFOZRiytnUrXk/PM6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./assets/css/styles.css">
     <script src="./assets/js/main.js" defer></script>
 </head>
 <body>
-    <section class="main">   
+    <sec class="main">   
         
         <div class="overlay"><img class="overlay__img" src="./assets/gif/101.gif" alt="Cargando" /></div>
         
@@ -45,7 +47,8 @@
             </div>
         </header>
         
-        <div class="cart">
+        <div class="cart"> 
+            <div class="x"><i class='bx bx-x'></i></div> 
             <div class="cart__products"></div>
             <div class="cart__total">
                 <div class="cart__total--info">
@@ -67,14 +70,34 @@
                     <h1>New Sweatshirt COLLECTIONS 2024</h1>
                     <h4>Latest arrival of the new Hanes Midweight Crewneck sweatshirt imported from the 2022 series, with a modern design.</h4>
                     <div class="valor" >$14.00</div>
-                    <button class="secondSection__button" type="button">Show More</button>
+                    <button class="secondSection__button" type="button"><a class="btn_a" href="#thirdSection">Show More</a></button>
                 </div>
             </section>
         </section>
         <section id="thirdSection">
         </section>
     </section>
-<!---->
+        <!--<section class="filters">
+            <div class="tags">
+                <p data-filter='all'>Todos</p>
+                <p data-filter='.shirt'>Shirt</p>
+                <p data-filter='.hoddie'>Hoddie</p>
+                <p data-filter='.sweater'>Sweater</p>
+            </div>   
+            
+        </section>-->
+
+<!--<script>
+    mixitup(".cardProduct", {
+        selectors: {
+            target:'.element'
+        },
+        animation: {
+            duration: 300
+        }
+    }).filter('all')
+</script>
+-->
     <footer id="footer">
         <section class="content">
             <section class="area1" >
