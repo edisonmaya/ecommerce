@@ -52,7 +52,7 @@ body::-webkit-scrollbar-thumb{
 #header{
     display: flex;
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     justify-content: space-around;
     width: 100%;
@@ -122,6 +122,7 @@ a:hover{
     color: var(--first-color);
 }
 
+
 .logo{
     width: 2.5rem;
     height: 2.5rem;
@@ -136,10 +137,52 @@ a:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   
 }
 .n2{
     position: relative;
+}
+
+.menu{
+    display: grid;
+    justify-content: center;
+    align-items: start;
+    gap:1rem;
+    height: 100vh;
+    width: 100vw;
+    background-color: #cccc;
+    position: fixed;
+    right: 0;
+    
+}
+.menu__show{
+    background-color: var(--container-color);
+    height: 100%;
+    width: 100%;
+    padding-top: 3.5rem;
+    right: 100%;
+}
+.menu ul,li,.a_nav1,.a_nav2{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    color: var(--text-color);
+    font-size: 1em;
+    gap: 1.5rem;
+    font-weight: 600;
+    transition: hover 0.5s;
+    width: 100%;
+}
+.bx-x{
+display: flex;
+justify-content: flex-end;
+align-items: end;
+width: 80vw;
+height: 10vh;
+cursor: pointer;
 }
 .amountProducts{
     position: absolute;
@@ -367,12 +410,17 @@ img{
 
 
 .cart{
+    /*
+    top: 3.5rem;
     height: calc(100vh - 3.5rem);
+    
+    */
+    height: 100vh;
     width: 400px;
     background-color: var(--container-color);
     position: fixed;
     right: -100%;
-    top: 3.5rem;
+    top: 0px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -382,7 +430,8 @@ img{
 .cart__show{
     right: 0;
     background-color: var(--container-color);
-    height: calc(100vh - 3.5rem);
+    height: 100vh;
+    padding-top: 3.5rem;
 }
 .cart__products{
     height: 85%;
@@ -456,17 +505,6 @@ color: var(--first-color);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 #footer{
     display: grid;
     place-items: center;
@@ -475,7 +513,6 @@ color: var(--first-color);
     background-color: var(--card-color);
     gap: 2rem;
 }
-
 
 .content{
     display: grid;
@@ -568,7 +605,15 @@ color: var(--first-color);
         font-weight: 600;
         transition: hover 0.5s;
     }
-    
+    .n3{
+        display: none;
+    }
+    .menu{
+        width: 40vw;
+    }
+    .bx-x{
+        max-width: 40vw;
+    }
     #firstSection{
         display: flex;
         flex-direction: row-reverse;
@@ -581,8 +626,6 @@ color: var(--first-color);
     h1{
         font-size: 3rem;
     }
-
-
     .area1{
         display: grid;
         place-items: center;
@@ -590,7 +633,6 @@ color: var(--first-color);
         height: 100%;
         padding: 2rem;
     }
-    
     .items_area1{
         display: flex;
         flex-direction: row;
@@ -622,5 +664,5 @@ color: var(--first-color);
         font-size: 1.5rem;
     }
 
-}
 
+}

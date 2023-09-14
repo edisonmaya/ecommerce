@@ -45,6 +45,22 @@ function handleShowCart() {
         cartHtml.classList.toggle("cart__show");
     })
 }
+function handleShowMenu() {
+    const iconMenu = document.querySelector(".bxs-dashboard");
+    const menutHtml = document.querySelector(".menu");
+    iconMenu.addEventListener("click",function () {
+        console.log(iconMenu);
+        menutHtml.classList.toggle("menu__show");
+    })
+}
+function CloseShowMenu() {
+    const bxX = document.querySelector(".bx-x");
+    const menutHtml = document.querySelector(".menu");
+    bxX.addEventListener("click",function () {
+        console.log(bxX)
+        menutHtml.classList.toggle("menu__show");
+    })
+}
 function addToCartfromThirdSection(db) {
 
     const productsHTML = document.querySelector("#thirdSection");
@@ -232,6 +248,8 @@ async function main()
     await getProducts(url), cart: JSON.parse(window.localStorage.getItem("cart")) || {}, }
     printProducts(db);
     handleShowCart();
+    handleShowMenu()
+    CloseShowMenu()
     addToCartfromThirdSection(db);
     themeMode();
     scroll();
