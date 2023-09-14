@@ -42,7 +42,6 @@ function handleShowCart() {
     const cartHtml = document.querySelector(".cart");
     iconCart.addEventListener("click",function () {
         cartHtml.classList.toggle("cart__show");
-        console.log(cartHtml);
     })
 }
 function addToCartfromThirdSection(db) {
@@ -99,7 +98,7 @@ function scroll() {
 function printProductsinCart(db) {
     const card__products = document.querySelector('.cart__products');
     let html ='';
-    console.log(card__products);
+    card__products.innerHTML= html;
     for (const product in db.cart) {
         const {quantity, price,name,image,id,amount} = db.cart[product];
         html += `
@@ -124,6 +123,73 @@ function printProductsinCart(db) {
         }
 }
 
+function handleProductsInCart(db) {
+    const cartProducts = document.querySelector(".cart__products");
+    console.log(cartProducts);
+    cartProducts.addEventListener('click',function (e) {
+        
+        if(e.target.classList.contains("bx-plus"))
+        {
+            const id = Number(e.target.parentElement.id);
+            const productFind = db.products.find(
+                (product) => product.id === id
+                );
+                if(productFind.quantity=== db.cart[productFind.id].amount) 
+                return alert("Se agotó el producto")
+            
+            db.cart[id].amount++;
+        }
+        if(e.target.classList.contains("bx-minus"))
+        {
+            const id = Number(e.target.parentElement.id);
+            if(db.cart[id].amount===1){
+                const response = confirm("Estas Seguro de Eliminar este Producto?");
+                if (!response) return;
+                    delete db.cart[id];    
+            }
+            else{
+            db.cart[id].amount--;
+            }
+        }
+        if(e.target.classList.contains("bx-trash"))
+        {
+            const id = Number(e.target.parentElement.id);
+            
+                const response = confirm("Estas Seguro de Eliminar este Producto?");
+                if (!response) return;
+                    delete db.cart[id];    
+        }
+        window.localStorage.setItem("cart",JSON.stringify(db.cart));
+        printProductsinCart(db);
+    });
+
+}
+function printTotal(db) {
+    const card__products = document.querySelector('.cart__products');
+    let html ='';
+    for (const product in db.cart) {
+        const {quantity, price,name,image,id,amount} = db.cart[product];
+        html += `
+                <div class="cart_product">
+                    <div class="cartProduct--img">
+                        <img src="${image}" alt="imagen" />
+                    </div>
+                    <div class="cart__product--body">
+                        <h4>${name} | $ ${price}</h4>
+                        <p>Stock: ${quantity}</p>
+                        <div class="cart__product--body-op" id = '${id}'>
+                            <i class='bx bx-minus'></i>
+                            <span>${amount} unit</span>
+                            <i class='bx bx-plus'></i>
+                            <i class='bx bx-trash'></i>
+                        </div>
+                    </div>
+                </div>
+                `
+                card__products.innerHTML= html;
+            
+        }
+}
 async function main() 
 {
     load();
@@ -136,27 +202,8 @@ async function main()
     themeMode();
     scroll();
     printProductsinCart(db);
-
-    const cartProducts = document.querySelector(".cart__products");
-    cartProducts.addEventListener('click',function (e) {
-        if(e.target.classList.contains("bx-plus"))
-        {
-            const id = Number(e.target.parentElement.id);
-            db.cart[id].amount++;
-        }
-        if(e.target.classList.contains("bx-minus"))
-        {
-            const id = Number(e.target.parentElement.id);
-            db.cart[id].amount--;
-        }
-        if(e.target.classList.contains("bx-trash"))
-        {
-            const id = Number(e.target.parentElement.id);
-            delete db.cart[id];
-        }
-        printProductsinCart(db);
-    })
-    
+    handleProductsInCart(db);
+        
 
     
 }
