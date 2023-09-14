@@ -15,14 +15,15 @@ async function getProducts(url) {
 }
 function printProducts(db){
     const thirdSection = document.querySelector("#thirdSection");
+    
     let html=``;
     for (const product of db.products) 
-    
         {
             html+=` <div class="cardProduct">
                         <div class = "cardProduct__img">
                             <img class="cardImg"src="${product.image}" alt="Image ${product.name}"/>
-                            <div class="plus"><i class='bx bx-plus' id='${product.id}'></i></div>
+                            ${product.quantity?`<div class="plus"><i class='bx bx-plus' id='${product.id}'></i></div>`:
+                            `<span class="soldOut"><p>Sold Out</p></span>`}  
                         </div>
                         <div class="card__Section_bottom">
                             <div class = "cardProduct__info">
@@ -66,6 +67,8 @@ function addToCartfromThirdSection(db) {
             }
             window.localStorage.setItem("cart", JSON.stringify(db.cart));
             printProductsinCart(db);
+            printTotal(db);
+            handleAmountProducts(db);
         }
     })    
 }
@@ -88,13 +91,15 @@ function themeMode() {
 function scroll() {
     document.addEventListener('scroll',()=>{
         const header = document.querySelector('#header');
-        if(window.scrollY>0)
-        {header.classList.add('change')}
-        else
-        {header.classList.remove('change')}
+        const a_nav1 = document.querySelector('.a_nav1');
+        const a_nav2 = document.querySelector('.a_nav2');
+        
+        window.scrollY>0? header.classList.add('change'): header.classList.remove('change');
+        //if(screen.height<window.scrollY){a_nav1.classList.add('a_nav1'); console.log(window.scrollY)}else{a_nav1.classList.add('a_nav1--change')}
+        //screen.height<(screen.height+1)? a_nav1.classList.add('a_nav1--change'):a_nav1.classList.remove('a_nav1--change');
+        //screen.height<window.scrollY? a_nav2.classList.add('a_nav2--change'):a_nav2.classList.remove('a_nav2--change');
     })
 }
-
 function printProductsinCart(db) {
     const card__products = document.querySelector('.cart__products');
     let html ='';
@@ -122,10 +127,8 @@ function printProductsinCart(db) {
             
         }
 }
-
 function handleProductsInCart(db) {
     const cartProducts = document.querySelector(".cart__products");
-    console.log(cartProducts);
     cartProducts.addEventListener('click',function (e) {
         
         if(e.target.classList.contains("bx-plus"))
@@ -161,34 +164,65 @@ function handleProductsInCart(db) {
         }
         window.localStorage.setItem("cart",JSON.stringify(db.cart));
         printProductsinCart(db);
+        printTotal(db);
+        handleAmountProducts(db);
     });
 
 }
 function printTotal(db) {
-    const card__products = document.querySelector('.cart__products');
-    let html ='';
+    const infoTotal=document.querySelector(".info__total");    
+    const infoAmount=document.querySelector(".info__amount");
+    let totalProducts= 0;
+    let amountProducts= 0;    
+
     for (const product in db.cart) {
-        const {quantity, price,name,image,id,amount} = db.cart[product];
-        html += `
-                <div class="cart_product">
-                    <div class="cartProduct--img">
-                        <img src="${image}" alt="imagen" />
-                    </div>
-                    <div class="cart__product--body">
-                        <h4>${name} | $ ${price}</h4>
-                        <p>Stock: ${quantity}</p>
-                        <div class="cart__product--body-op" id = '${id}'>
-                            <i class='bx bx-minus'></i>
-                            <span>${amount} unit</span>
-                            <i class='bx bx-plus'></i>
-                            <i class='bx bx-trash'></i>
-                        </div>
-                    </div>
-                </div>
-                `
-                card__products.innerHTML= html;
-            
+        const {amount,price} = db.cart[product];
+        totalProducts += price * amount ;
+        amountProducts += amount;
+    }
+
+    infoAmount.textContent = amountProducts + "units";
+    infoTotal.textContent = "$" + totalProducts +".00"
+}
+function handleTotal(db) {
+
+    const btnBuy = document.querySelector(".btn__buy");
+    
+    btnBuy.addEventListener("click",function () {
+        console.log("hola")
+        if (!Object.values(db.cart).length) return alert("Seleccione un Producto a Comprar");
+        const response =confirm("Seguro que desea Comprar?");
+        if(!response)return;
+        const currentProducts =[];
+
+        for (const product of db.products) {
+            const productCart = db.cart[product.id];
+            if (product.id === productCart?.id) {
+                currentProducts.push({...product,
+                quantity: product.quantity - productCart.amount});       
+            }else{
+                currentProducts.push(product);
+            }
         }
+
+        db.products = currentProducts; 
+        db.cart = {}
+        window.localStorage.setItem("products",JSON.stringify(db.products));
+        window.localStorage.setItem("cart",JSON.stringify(db.cart));
+        printTotal(db);
+        printProductsinCart(db);
+        printProducts(db);
+        handleAmountProducts(db);
+    });
+}
+function handleAmountProducts(db) {
+    
+    const amountProducts = document.querySelector(".amountProducts")
+    let amount = 0;
+    for (const product in db.cart) {    
+        amount += db.cart[product].amount;
+    }
+    amountProducts.textContent = amount;
 }
 async function main() 
 {
@@ -202,14 +236,11 @@ async function main()
     themeMode();
     scroll();
     printProductsinCart(db);
-    handleProductsInCart(db);
-        
-
-    
+    handleProductsInCart(db);   
+    printTotal(db);
+    handleTotal(db);
+    handleAmountProducts(db);
 }
-
-
-
 
 window.addEventListener("load",main);
 
