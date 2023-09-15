@@ -46,7 +46,7 @@ function imprimirProductos(db){
         {
             html+=`             
                 <div class="cardProduct">
-                    <div class="element ${product.category}">
+                    <div class="mix ${product.category}">
                         <div class = "cardProduct__img">
                             <img class="cardImg"src="${product.image}" alt="Image ${product.name}"/>
                             ${product.quantity?`<div class="plus"><i class='bx bx-plus' id='${product.id}'></i></div>`:
@@ -65,14 +65,8 @@ function imprimirProductos(db){
                 `
         }   
         thirdSection.innerHTML= html;    
-        mixitup(".cardProduct", {
-            selectors: {
-                target:'.element'
-            },
-            animation: {
-                duration: 300
-            }
-        }).filter('all')
+        let config = document.querySelector("#thirdSection");
+        let mixer = mixitup(config);
 }
 function handleShowCart() {
     const iconCart = document.querySelector(".bx-shopping-bag");
@@ -285,8 +279,8 @@ async function main()
     const url = "https://ecommercebackend.fundamentos-29.repl.co/";
     const db={ products: JSON.parse( window.localStorage.getItem("products")) || 
     await getProducts(url), cart: JSON.parse(window.localStorage.getItem("cart")) || {}, }
-    printProducts(db);
-    //imprimirProductos(db)
+    //printProducts(db);
+    imprimirProductos(db)
     handleShowCart();
     CloseShowCart();
     handleShowMenu();

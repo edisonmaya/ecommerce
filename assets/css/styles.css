@@ -308,27 +308,29 @@ img{
     max-width: 100px;
 }
 
-.filters{
+
+.mixbtns{
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: lightseagreen;
-}
-.tags{
-    display: flex;
+    flex-wrap: wrap;
     height: 3rem;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: end;
     width: 100%;
     padding: 1rem;
-    gap: 2rem;
-    background-color: lightgreen;
-    /*background-color: var(--container-color);*/
+    gap: 1rem;
+    background-color: var(--container-color);
+    height: 10rem;
 }
-.tags p{
+.mixbtns p{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
     padding: 1rem 1.5rem;
-    background-color: lightgray;
+    background-color: var(--button-color);  
+    color: var(--card-color);
+    box-shadow: var(--shadow-general);
 }
 #thirdSection{
     display: grid;
