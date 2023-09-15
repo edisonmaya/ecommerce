@@ -375,7 +375,7 @@ img{
     border-radius:5px ;
     padding:0 2rem;
     transition-duration: 0.5s;
-   user-select: none;
+    user-select: none;
 }
 .plus:hover{
     background-color: var(--first-color);

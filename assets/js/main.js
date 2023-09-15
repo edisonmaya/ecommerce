@@ -65,8 +65,13 @@ function imprimirProductos(db){
                 `
         }   
         thirdSection.innerHTML= html;    
-        let config = document.querySelector("#thirdSection");
-        let mixer = mixitup(config);
+        //let config = document.querySelector("#thirdSection");
+        //let mixer = mixitup(config);
+
+        mixitup("#thirdSection",{
+            selectors: {  target : '.mix' },
+            animation : { duration : 100  }
+        }).filter('all');          
 }
 function handleShowCart() {
     const iconCart = document.querySelector(".bx-shopping-bag");
