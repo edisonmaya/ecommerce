@@ -67,11 +67,11 @@ function imprimirProductos(db){
         thirdSection.innerHTML= html;    
         //let config = document.querySelector("#thirdSection");
         //let mixer = mixitup(config);
-
-        mixitup("#thirdSection",{
+        //let config =document.querySelector("#thirdSection")
+        mixitup(thirdSection,{
             selectors: {  target : '.mix' },
             animation : { duration : 100  }
-        }).filter('all');          
+        }).filter('all'); 
 }
 function handleShowCart() {
     const iconCart = document.querySelector(".bx-shopping-bag");

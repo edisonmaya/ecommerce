@@ -331,6 +331,7 @@ img{
     background-color: var(--button-color);  
     color: var(--card-color);
     box-shadow: var(--shadow-general);
+    cursor: pointer;
 }
 #thirdSection{
     display: grid;
