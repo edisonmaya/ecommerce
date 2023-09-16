@@ -42,36 +42,36 @@ function imprimirProductos(db){
     const thirdSection = document.querySelector("#thirdSection");
     
     let html=``;
-    for (const product of db.products) 
+    for (const {category, image, quantity, price,name,id} of db.products) 
         {
             html+=`             
                 <div class="cardProduct">
-                    <div class="mix ${product.category}">
+                    <div class="mix ${category}">
                         <div class = "cardProduct__img">
-                            <img class="cardImg"src="${product.image}" alt="Image ${product.name}"/>
-                            ${product.quantity?`<div class="plus"><i class='bx bx-plus' id='${product.id}'></i></div>`:
+                            <img class="cardImg"src="${image}" alt="Image ${name}"/>
+                            ${quantity?`<div class="plus"><i class='bx bx-plus' id='${id}'></i></div>`:
                             `<span class="soldOut"><p>Sold Out</p></span>`}  
                         </div>
                         <div class="card__Section_bottom">
                             <div class = "cardProduct__info">
-                                <h3>$${product.price}.00</h3><span><b>Stock: ${product.quantity}</b></span>
+                                <h3>$${price}.00</h3><span><b>Stock: ${quantity}</b></span>
                             </div>
                             <div class="cardProduct__Name">
-                                <h4>${product.name}</h4>
+                                <h4>${name}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
                 `
         }   
+       
         thirdSection.innerHTML= html;    
         //let config = document.querySelector("#thirdSection");
         //let mixer = mixitup(config);
-        //let config =document.querySelector("#thirdSection")
         mixitup(thirdSection,{
             selectors: {  target : '.mix' },
-            animation : { duration : 100  }
-        }).filter('all'); 
+            animation : { duration : 200  }
+        }).filter('all');
 }
 function handleShowCart() {
     const iconCart = document.querySelector(".bx-shopping-bag");
